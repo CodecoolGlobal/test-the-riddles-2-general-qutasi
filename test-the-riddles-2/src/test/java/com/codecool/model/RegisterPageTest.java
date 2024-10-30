@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,7 +23,7 @@ public class RegisterPageTest {
     
     @BeforeEach
     public void setUp() {
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://localhost:3000");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -39,16 +40,16 @@ public class RegisterPageTest {
     @Test
     public void testSuccessfulRegistrationWithCorrectCredentials() {
         RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("test", "test@test.com", "test");
-        HomePage homePage = loginPage.login("test", "test");
-        //wait.until(ExpectedConditions.urlToBe(HOMEPAGE_URL)); //if it false throws error, not needed assertion.
+        LoginPage loginPage = registerPage.signUp("testing", "test@test.com", "testing", LOGIN_URL);
+        HomePage homePage = loginPage.login("testing", "testing");
+        wait.until(ExpectedConditions.urlToBe(HOMEPAGE_URL)); //if it false throws error, not needed assertion.
         assertEquals(HOMEPAGE_URL, homePage.getUrl());
     }
     
     @Test
     public void testUnSuccessfulRegistrationWithAlreadyExistedUserNameAndPasswordButDifferentEmail() {
         RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("test", "second@email.com", "test");
+        LoginPage loginPage = registerPage.signUp("test", "second@email.com", "test", LOGIN_URL);
         HomePage homePage = loginPage.login("test", "test");
         assertEquals(LOGIN_URL, homePage.getUrl(), "should not be a successful login");
     }
@@ -56,7 +57,7 @@ public class RegisterPageTest {
     @Test
     public void testUnsuccessfulRegistrationAlreadyExistedUserNameWithNewEmailAndPassword() {
         RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("test", "third@email.com", "test2");
+        LoginPage loginPage = registerPage.signUp("test", "third@email.com", "test2", LOGIN_URL);
         HomePage homePage = loginPage.login("test", "test2");
         assertEquals(LOGIN_URL, homePage.getUrl(), "should not be a successful login");
     }
@@ -64,7 +65,7 @@ public class RegisterPageTest {
     @Test
     public void testUnsuccessfulRegistrationAlreadyExistedEmailWithNewUserNameAndPassword() {
         RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("test3", "third@email.com", "test3");
+        LoginPage loginPage = registerPage.signUp("test3", "third@email.com", "test3", LOGIN_URL);
         HomePage homePage = loginPage.login("test3", "test3");
         assertEquals(LOGIN_URL, homePage.getUrl(), "should not be a successful login");
     }
@@ -80,7 +81,7 @@ public class RegisterPageTest {
     @Test
     public void testUnsuccessfulRegisterWithOnlyNumbers() {
         RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("111","333@333.com", "333");
+        LoginPage loginPage = registerPage.signUp("111","333@333.com", "333", LOGIN_URL);
         HomePage homePage = loginPage.login("111", "333");
         assertEquals(LOGIN_URL, homePage.getUrl(), "Need bug report. Not available character");
     }
@@ -88,7 +89,7 @@ public class RegisterPageTest {
     @Test
     public void testUnsuccessfulRegisterWithOnlyWhitespace() {
         RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp(" "," ", " ");
+        LoginPage loginPage = registerPage.signUp(" "," ", " ", LOGIN_URL);
         HomePage homePage = loginPage.login(" ", " ");
         assertEquals(LOGIN_URL, homePage.getUrl(), "Need bug report. Not available character");
     }
@@ -96,7 +97,7 @@ public class RegisterPageTest {
     @Test
     public void testUnsuccessfulRegisterWithOnlySpecialCharacter() {
         RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("¶","¶","¶");
+        LoginPage loginPage = registerPage.signUp("¶","¶","¶", LOGIN_URL);
         HomePage homePage = loginPage.login("¶", "¶");
         assertEquals(LOGIN_URL, homePage.getUrl(), "Need bug report. Not available character. Should not be a successful login");
     }
@@ -104,7 +105,7 @@ public class RegisterPageTest {
     @Test
     public void testUnsuccessfulRegisterWithOnlyEmoji() {
         RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("❌","❌", "❌");
+        LoginPage loginPage = registerPage.signUp("❌","❌", "❌", LOGIN_URL);
         loginPage.login("❌", "❌");
         try {
             wait.until(ExpectedConditions.urlToBe(HOMEPAGE_URL));
