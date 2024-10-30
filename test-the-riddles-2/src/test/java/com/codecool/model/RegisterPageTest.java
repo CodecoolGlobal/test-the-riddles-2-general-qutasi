@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegisterPageTest {
     
@@ -40,9 +41,9 @@ public class RegisterPageTest {
     @Test
     public void testSuccessfulRegistrationWithCorrectCredentials() {
         RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("testing", "test@test.com", "testing", LOGIN_URL);
-        HomePage homePage = loginPage.login("testing", "testing");
-        wait.until(ExpectedConditions.urlToBe(HOMEPAGE_URL)); //if it false throws error, not needed assertion.
+        LoginPage loginPage = registerPage.signUp("test", "test@test.com", "test", LOGIN_URL);
+        HomePage homePage = loginPage.login("test", "test");
+        wait.until(ExpectedConditions.urlToBe(HOMEPAGE_URL)); //in try/catch if its false throws error, not needed assertion.
         assertEquals(HOMEPAGE_URL, homePage.getUrl());
     }
     

@@ -31,6 +31,7 @@ public class RegisterPage extends NavbarPage{
         driver.findElement(userNameBy).sendKeys(username);
         driver.findElement(passwordBy).sendKeys(password);
         driver.findElement(signUpBy).click();
+        waitForPage(LOGIN_URL);
         return new LoginPage(driver);
     }
 }
