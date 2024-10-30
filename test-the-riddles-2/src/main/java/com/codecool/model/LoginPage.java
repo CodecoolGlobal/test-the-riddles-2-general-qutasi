@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
-    public static final String URL = "http://localhost:3000/login";
     
     protected WebDriver driver;
     private By userNameBy = By.id("user-name");
