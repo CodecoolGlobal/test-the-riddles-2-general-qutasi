@@ -17,6 +17,7 @@ public class LoginPage extends NavbarPage {
         driver.findElement(userNameBy).sendKeys(username);
         driver.findElement(passwordBy).sendKeys(password);
         driver.findElement(loginButtonBy).click();
+        waitForPage(URL);
         return new HomePage(driver);
     }
     

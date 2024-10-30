@@ -49,8 +49,9 @@ public class RegisterPageTest {
     @Test
     public void testUnSuccessfulRegistrationWithAlreadyExistedUserNameAndPasswordButDifferentEmail() {
         RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("test", "second@email.com", "test", LOGIN_URL);
-        HomePage homePage = loginPage.login("test", "test");
+        LoginPage loginPage = registerPage.signUp("username", "second@email.com", "password", LOGIN_URL);
+        HomePage homePage = loginPage.login("username", "password");
+        wait.until(ExpectedConditions.urlToBe(HOMEPAGE_URL));
         assertEquals(LOGIN_URL, homePage.getUrl(), "should not be a successful login");
     }
     

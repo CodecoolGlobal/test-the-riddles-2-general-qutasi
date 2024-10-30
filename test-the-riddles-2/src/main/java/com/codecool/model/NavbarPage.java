@@ -11,6 +11,7 @@ import java.time.Duration;
 public class NavbarPage {
 
     WebDriver driver;
+    WebDriverWait wait;
 
     private final By loginBtnBy = By.cssSelector(".text-gray-900 > span:nth-child(1)");
     private final By signUpBtnBy = By.cssSelector(".bg-gradient-to-tr > span:nth-child(1)");
@@ -23,6 +24,7 @@ public class NavbarPage {
 
     public NavbarPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     private boolean isElementVisible(By by) {
@@ -60,5 +62,9 @@ public class NavbarPage {
 
     public String getUrl() {
         return driver.getCurrentUrl();
+    }
+
+    public void waitForPage(String url) {
+        wait.until(ExpectedConditions.urlToBe(url));
     }
 }

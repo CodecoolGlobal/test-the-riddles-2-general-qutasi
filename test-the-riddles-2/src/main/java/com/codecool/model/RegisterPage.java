@@ -7,18 +7,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class RegisterPage {
-    
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+public class RegisterPage extends NavbarPage{
+    private static final String LOGIN_URL = "http://localhost:3000/login";
     private By userNameBy = By.id("user-name");
     private By emailBy = By.id("email");
     private By passwordBy = By.id("password");
     private By signUpBy = By.xpath("//button[contains(text(),'SIGN UP')]");
     
     public RegisterPage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        super(driver);
     }
     
     public LoginPage signUp(String username, String email , String password, String loginUrl) {
@@ -26,7 +23,7 @@ public class RegisterPage {
         driver.findElement(emailBy).sendKeys(email);
         driver.findElement(passwordBy).sendKeys(password);
         driver.findElement(signUpBy).click();
-        wait.until(ExpectedConditions.urlToBe(loginUrl));
+        waitForPage(LOGIN_URL);
         return new LoginPage(driver);
     }
     
