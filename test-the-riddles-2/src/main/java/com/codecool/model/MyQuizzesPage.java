@@ -4,14 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class MyQuizzesPage extends NavbarPage{
-    private By firstPlayBtnBy = By.xpath("/html/body/div/div/div[2]/div/div[1]/div[1]/button[3]");
-    private By firstEditBtnBy = By.xpath("/html/body/div/div/div[2]/div/div[1]/div[1]/button[2]");
-    private By firstDeleteBtnBy = By.xpath("/html/body/div/div/div[2]/div/div[1]/div[1]/button[1]");
-    private By addQuizBtnBy = By.xpath("/html/body/div/div/div[2]/div/div[1]/button");
+    private By firstPlayBtnBy = By.xpath("//button[contains(text(),'Play')]");
+    private By firstEditBtnBy = By.xpath("//button[contains(text(),'Edit')]");
+    private By firstDeleteBtnBy = By.xpath("//button[contains(text(),'Delete')]");
+    private By addQuizBtnBy = By.xpath("//button[contains(text(),'Add Quiz')]");
 
     public MyQuizzesPage(WebDriver driver) {
         super(driver);
     }
-
     
 }

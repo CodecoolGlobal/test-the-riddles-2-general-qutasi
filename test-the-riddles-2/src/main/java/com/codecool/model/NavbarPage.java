@@ -13,14 +13,14 @@ public class NavbarPage {
     WebDriver driver;
     WebDriverWait wait;
 
-    private final By loginBtnBy = By.cssSelector(".text-gray-900 > span:nth-child(1)");
-    private final By signUpBtnBy = By.cssSelector(".bg-gradient-to-tr > span:nth-child(1)");
-    private final By logoutBtnBy = By.cssSelector("span.hidden:nth-child(1)");
-    private final By mainPageBtnBy = By.cssSelector(".container > a:nth-child(1)");
-    private final By gamesBtnBy = By.cssSelector("li.antialiased:nth-child(1)");
-    private final By quizzesBtnBy = By.cssSelector("li.antialiased:nth-child(2)");
-    private final By myQuizzesBtnBy = By.cssSelector("li.antialiased:nth-child(3)");
-    private final By accountBtnBy = By.cssSelector("li.antialiased:nth-child(4)");
+    private final By loginBtnBy = By.xpath("//button[contains(text(),'Login')]");
+    private final By signUpBtnBy = By.xpath("//button[contains(text(),'Sign up')]");
+    private final By logoutBtnBy = By.xpath("//button[contains(text(),'Logout')]");
+    private final By mainPageBtnBy = By.xpath("//a[contains(text(),'Reptile Riddles')]");
+    private final By gamesBtnBy = By.xpath("//button[contains(text(),'Games')]");
+    private final By quizzesBtnBy = By.xpath("//button[contains(text(),'Quizzes')]");
+    private final By myQuizzesBtnBy = By.xpath("//button[contains(text(),'My Quizzes')]");
+    private final By accountBtnBy = By.xpath("//button[contains(text(),'Account')]");
 
     public NavbarPage(WebDriver driver) {
         this.driver = driver;
