@@ -14,11 +14,11 @@ public class LoginPage extends NavbarPage {
         super(driver);
     }
     
-    public HomePage login(String username, String password) {
+    public HomePage login(String username, String password, String url) {
         driver.findElement(userNameBy).sendKeys(username);
         driver.findElement(passwordBy).sendKeys(password);
         driver.findElement(loginButtonBy).click();
-        waitForPage(URL);
+        waitForPage(url);
         return new HomePage(driver);
     }
     
