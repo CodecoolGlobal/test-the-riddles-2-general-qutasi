@@ -44,15 +44,13 @@ public class RegisterPageTest {
         driver.quit();
     }
     
-    
     @ParameterizedTest
     @CsvFileSource(resources = SUCCESS_REGISTER_DATA_SOURCE, numLinesToSkip = 1)
     @DisplayName("test successful registration with correct credentials")
     public void successfulRegistration(String username, String email, String password) {
         RegisterPage registerPage = new RegisterPage(driver);
         LoginPage loginPage = registerPage.signUp(username, email, password);
-        HomePage homePage = loginPage.login(username, password);
-        wait.until(ExpectedConditions.urlToBe(HOMEPAGE_URL));
+        HomePage homePage = loginPage.login(username, password, HOMEPAGE_URL);
         assertEquals(HOMEPAGE_URL, homePage.getUrl());
     }
     
@@ -62,83 +60,8 @@ public class RegisterPageTest {
     public void testUnSuccessfulRegistration(String username, String email, String password) {
         RegisterPage registerPage = new RegisterPage(driver);
         LoginPage loginPage = registerPage.signUp(username, email, password);
-        HomePage homePage = loginPage.login(username, password);
+        HomePage homePage = loginPage.login(username, password, LOGIN_URL);
         assertEquals(LOGIN_URL, homePage.getUrl(), "should not be a successful login");
     }
     //bugreport: emoji is a valid character and user can login with it.
-/*
-    @ParameterizedTest
-    @CsvFileSource(resources = FAIL_REGISTER_DATA_SOURCE, numLinesToSkip = 1)
-    @DisplayName("test unsuccessful registration with already existed username with new email and password")
-    public void testUnsuccessfulRegistrationWithNewEmailAndPassword(String username, String email, String password) {
-        RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp(username, email, password);
-        HomePage homePage = loginPage.login(username, password);
-        assertEquals(LOGIN_URL, homePage.getUrl(), "should not be a successful login");
-    }
-    
-    @ParameterizedTest
-    @CsvFileSource(resources = FAIL_REGISTER_DATA_SOURCE, numLinesToSkip = 1)
-    @DisplayName("test unsuccessful registration with already existed email with new username and password")
-    public void testUnsuccessfulRegistrationWithNewUsernameAndPassword(String username, String email, String password) {
-        RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp(username, email, password);
-        HomePage homePage = loginPage.login(username, password);
-        assertEquals(LOGIN_URL, homePage.getUrl(), "should not be a successful login");
-    }
-    
-    @ParameterizedTest
-    @CsvFileSource(resources = FAIL_REGISTER_DATA_SOURCE, numLinesToSkip = 1)
-    @DisplayName("test unsuccessful registration without email")
-    public void testUnsuccessfulRegistrationWithoutEmail(String username, String email, String password) {
-        RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp(username,email, password);
-        HomePage homePage = loginPage.login(username, password);
-        wait.until(ExpectedConditions.urlToBe(LOGIN_URL));
-        assertEquals(LOGIN_URL, homePage.getUrl(), "Should not be a successful login");
-    }
-    
-    @ParameterizedTest
-    @CsvFileSource(resources = FAIL_REGISTER_DATA_SOURCE, numLinesToSkip = 2)
-    @DisplayName("test unsuccessful registration with only numbers")
-    public void testUnsuccessfulRegisterWithNumbers(String username, String email, String password) {
-        RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp(username, email, password);
-        HomePage homePage = loginPage.login(username, password);
-        assertEquals(LOGIN_URL, homePage.getUrl(), "Need bug report. Not available character");
-    }
-    
-    @ParameterizedTest
-    @CsvFileSource(resources = FAIL_REGISTER_DATA_SOURCE, numLinesToSkip = 4)
-    @DisplayName("test unsuccessful registration with only whitespaces")
-    public void testUnsuccessfulRegisterWithWhitespace(String username, String email, String password) {
-        RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp(username, email, password);
-        HomePage homePage = loginPage.login(username, password);
-        assertEquals(LOGIN_URL, homePage.getUrl(), "Need bug report. Not available character");
-    }
-    
-    @ParameterizedTest
-    @CsvFileSource(resources = FAIL_REGISTER_DATA_SOURCE, numLinesToSkip = 3)
-    @DisplayName("test unsuccessful registration with only special characters")
-    public void testUnsuccessfulRegisterWithSpecialCharacter() {
-        RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("¶","¶","¶");
-        HomePage homePage = loginPage.login("¶", "¶");
-        assertEquals(LOGIN_URL, homePage.getUrl(), "Need bug report. Not available character. Should not be a successful login");
-    }
-    
-    @Test
-    public void testUnsuccessfulRegisterWithOnlyEmoji() {
-        RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("❌","❌", "❌");
-        loginPage.login("❌", "❌");
-        try {
-            wait.until(ExpectedConditions.urlToBe(HOMEPAGE_URL));
-        }
-        catch (Exception e) {
-            throw new RuntimeException("Need bug report. Not available character. Should not be a successful login");
-        }
-    }
-*/
 }
