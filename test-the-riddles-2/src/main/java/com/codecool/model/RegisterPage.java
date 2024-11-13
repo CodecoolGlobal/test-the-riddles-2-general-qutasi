@@ -18,7 +18,7 @@ public class RegisterPage extends NavbarPage{
         super(driver);
     }
     
-    public LoginPage signUp(String username, String email , String password, String loginUrl) {
+    public LoginPage signUp(String username, String email , String password) {
         driver.findElement(userNameBy).sendKeys(username);
         driver.findElement(emailBy).sendKeys(email);
         driver.findElement(passwordBy).sendKeys(password);

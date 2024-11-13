@@ -31,7 +31,7 @@ public class LoginTest {
             .click();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         RegisterPage registerPage = new RegisterPage(driver);
-        LoginPage loginPage = registerPage.signUp("test11", "test@test.com", "test11", LOGIN_URL);
+        LoginPage loginPage = registerPage.signUp("test11", "test@test.com", "test11");
         loginPage.login("test11", "test11");
     }
     
