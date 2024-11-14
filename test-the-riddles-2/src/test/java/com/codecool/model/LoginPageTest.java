@@ -1,5 +1,6 @@
 package com.codecool.model;
 
+import com.codecool.ScreenshotUtil;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -73,6 +74,7 @@ public class LoginPageTest {
     public void testKeepLoginOnAccount() {
         HomePage homePage = new HomePage(driver);
         homePage.clickAccount();
+        ScreenshotUtil.takeScreenshot(driver, "account-bug");
         assertTrue(homePage.isLogoutBtnVisible());
     }
 }

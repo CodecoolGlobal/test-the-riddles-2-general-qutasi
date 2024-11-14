@@ -37,7 +37,7 @@ public class QuizFormPageTest {
         driver.get(BaseUrls.LOGIN.getUrl());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(PRIMARY_TEST_USERNAME, PRIMARY_TEST_PASSWORD,BaseUrls.HOMEPAGE.getUrl());
+        loginPage.login(PRIMARY_TEST_USERNAME, PRIMARY_TEST_PASSWORD);
         driver.get(BaseUrls.MY_QUIZZES.getUrl());
         MyQuizzesPage myQuizzesPage = new MyQuizzesPage(driver);
         myQuizzesPage.startQuizCreation();
