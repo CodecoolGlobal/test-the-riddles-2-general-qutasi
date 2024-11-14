@@ -21,5 +21,9 @@ public class MyQuizzesPage extends NavbarPage{
         Alert alert = driver.switchTo().alert();
         alert.accept();
     }
+
+    public void startQuizCreation() {
+        driver.findElement(addQuizBtnBy).click();
+    }
     
 }
