@@ -1,8 +1,6 @@
 package com.codecool.model;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,10 +25,10 @@ public class LoginPageTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.findElement(By.xpath("//span[contains(text(),'Sign up')]"))
             .click();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait waitBA = new WebDriverWait(driver, Duration.ofSeconds(5));
         RegisterPage registerPage = new RegisterPage(driver);
         LoginPage loginPage = registerPage.signUp("test11", "test@test.com", "test11");
-        loginPage.login("test11", "test11", HOMEPAGE_URL);
+        loginPage.login("test11", "test11");
     }
     
     @AfterEach
@@ -39,19 +37,42 @@ public class LoginPageTest {
     }
     
     @Test
-    public void testCanLogoutAfterSuccessfulLogin() {
-        NavbarPage navbarPage = new NavbarPage(driver);
-        navbarPage.logout();
-        navbarPage.waitForPage(LOGIN_URL);
-        assertTrue(navbarPage.isLoginBtnVisible(),  "User should be logged out and login button should be visible");
+    @DisplayName("successful logout after login")
+    public void testLogoutAfterLogin() {
+        HomePage homePage = new HomePage(driver);
+        homePage.logout();
+        assertTrue(homePage.isLoginBtnVisible(),  "User should be logged out and login button should be visible");
+    }
+    
+    @Test
+    @DisplayName("keep login after click on Games page")
+    public void testKeepLoginOnGames() {
+        HomePage homePage = new HomePage(driver);
+        homePage.clickGames();
+        assertTrue(homePage.isLogoutBtnVisible());
+    }
+    
+    @Test
+    @DisplayName("keep login after click on Quizzes page")
+    public void testKeepLoginOnQuizzes() {
+        HomePage homePage = new HomePage(driver);
+        homePage.clickQuizzes();
+        assertTrue(homePage.isLogoutBtnVisible());
+    }
+    
+    @Test
+    @DisplayName("keep login after click on My Quizzes page")
+    public void testKeepLoginOnMyQuizzes() {
+        HomePage homePage = new HomePage(driver);
+        homePage.clickMyQuizzes();
+        assertTrue(homePage.isLogoutBtnVisible());
+    }
+    
+    @Test
+    @DisplayName("keep login after click on My Quizzes page")
+    public void testKeepLoginOnAccount() {
+        HomePage homePage = new HomePage(driver);
+        homePage.clickAccount();
+        assertTrue(homePage.isLogoutBtnVisible());
     }
 }
-
-
-
-
-
-
-
-
-

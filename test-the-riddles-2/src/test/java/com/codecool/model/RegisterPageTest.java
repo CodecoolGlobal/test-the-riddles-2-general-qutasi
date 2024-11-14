@@ -45,7 +45,7 @@ public class RegisterPageTest {
     public void successfulRegistration(String username, String email, String password) {
         RegisterPage registerPage = new RegisterPage(driver);
         LoginPage loginPage = registerPage.signUp(username, email, password);
-        HomePage homePage = loginPage.login(username, password, HOMEPAGE_URL);
+        HomePage homePage = loginPage.login(username, password);
         assertEquals(HOMEPAGE_URL, homePage.getUrl());
     }
     
@@ -55,8 +55,7 @@ public class RegisterPageTest {
     public void testUnSuccessfulRegistration(String username, String email, String password) {
         RegisterPage registerPage = new RegisterPage(driver);
         LoginPage loginPage = registerPage.signUp(username, email, password);
-        HomePage homePage = loginPage.login(username, password, LOGIN_URL);
+        HomePage homePage = loginPage.login(username, password);
         assertEquals(LOGIN_URL, homePage.getUrl(), "should not be a successful login");
     }
-    //bugreport: emoji is a valid character and user can login with it.
 }
