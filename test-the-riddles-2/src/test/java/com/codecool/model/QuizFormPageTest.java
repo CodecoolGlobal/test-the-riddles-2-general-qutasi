@@ -1,6 +1,7 @@
 package com.codecool.model;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class QuizFormPageTest {
 
@@ -17,6 +19,7 @@ public class QuizFormPageTest {
     private static final String PRIMARY_TEST_USERNAME = "tester";
     private static final String PRIMARY_TEST_EMAIL = "test@domain.com";
     private static final String PRIMARY_TEST_PASSWORD = "test";
+    private static final String PROPER_QUIZ_DATA = "/proper_quiz_data.csv";
 
     @BeforeAll
     public static void setUpBeforeAll() {
@@ -37,7 +40,9 @@ public class QuizFormPageTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(PRIMARY_TEST_USERNAME, PRIMARY_TEST_PASSWORD,BaseUrls.HOMEPAGE.getUrl());
-        driver.get(BaseUrls.ALL_QUIZZES.getUrl());
+        driver.get(BaseUrls.MY_QUIZZES.getUrl());
+        MyQuizzesPage myQuizzesPage = new MyQuizzesPage(driver);
+        myQuizzesPage.startQuizCreation();
     }
 
     @AfterEach
@@ -48,10 +53,13 @@ public class QuizFormPageTest {
         driver.quit();
     }
 
-    @Test
-    public void test() {
-        HomePage homePage = new HomePage(driver);
-        homePage.goToQuizzes();
-        assertEquals(BaseUrls.ALL_QUIZZES.getUrl(), driver.getCurrentUrl());
+    @ParameterizedTest
+    @CsvFileSource(resources = PROPER_QUIZ_DATA, numLinesToSkip = 1)
+    @DisplayName("test quiz creation with proper credentials")
+    public void testProperlyCreatedQuiz(String quizTitle,String questionTitle,String answer1,String answer2) {
+        QuizFormPage quizFormPage = new QuizFormPage(driver);
+        quizFormPage.createQuiz(quizTitle,questionTitle,answer1,answer2);
+        QuizzesPage quizzesPage = new QuizzesPage(driver);
+        assertTrue(quizzesPage.isCopyVisible());
     }
 }
