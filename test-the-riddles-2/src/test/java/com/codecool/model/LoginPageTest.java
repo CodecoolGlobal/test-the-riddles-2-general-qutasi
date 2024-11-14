@@ -1,6 +1,6 @@
 package com.codecool.model;
 
-import com.codecool.ScreenshotUtil;
+import com.codecool.utils.ScreenshotUtil;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
