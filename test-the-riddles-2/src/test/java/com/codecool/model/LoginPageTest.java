@@ -74,6 +74,7 @@ public class LoginPageTest {
     public void testKeepLoginOnAccount() {
         HomePage homePage = new HomePage(driver);
         homePage.clickAccount();
+        homePage.highlightElement(driver);
         ScreenshotUtil.takeScreenshot(driver, "account-bug");
         assertTrue(homePage.isLogoutBtnVisible());
     }

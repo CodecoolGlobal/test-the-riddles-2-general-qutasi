@@ -1,6 +1,7 @@
 package com.codecool.model;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -82,5 +83,9 @@ public class NavbarPage {
 
     public void clickAccount() {
         driver.findElement(accountBtnBy).click();
+    }
+    
+    public void highlightElement(WebDriver driver) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='5px solid yellow'", driver.findElement(accountBtnBy));
     }
 }
