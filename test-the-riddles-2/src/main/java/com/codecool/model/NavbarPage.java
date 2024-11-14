@@ -67,7 +67,7 @@ public class NavbarPage {
     public void waitForPage(String url) {
         wait.until(ExpectedConditions.urlToBe(url));
     }
-    
+
     public void clickGames() {
         driver.findElement(gamesBtnBy).click();
     }
