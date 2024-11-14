@@ -9,7 +9,8 @@ public class QuizFormPage extends NavbarPage{
 
     private final By addQuestionBtnBy = By.xpath("//button[contains(text(),'Add Question')]");
     private final By quizTitleFieldBy = By.id("name");
-    private final By saveQuizBtnBy = By.xpath("//*[contains(text(),'Save quiz')]");
+    private final By saveQuizBtnBy = By.xpath("//button[contains(text(),'Save quiz')]");
+    //private final By saveQuizBtnBy = By.xpath("/html/body/div/div/div[2]/div/div[2]/button[1]");
     private final By deleteQuizBtnBy = By.xpath("//button[contains(text(),'Delete quiz')]");
     private final By questionFieldBy = By.id("-1question");
     private final By timerBy = By.id("-1time");
@@ -42,7 +43,7 @@ public class QuizFormPage extends NavbarPage{
         fillField(answer1By, answer1);
         fillField(answer2By, answer2);
         driver.findElement(checkbox1By).click();
-        driver.findElement(saveQuestionBtnBy).click();
+        driver.findElement(saveQuizBtnBy).click();
         Alert alert = driver.switchTo().alert();
         alert.accept();
     }

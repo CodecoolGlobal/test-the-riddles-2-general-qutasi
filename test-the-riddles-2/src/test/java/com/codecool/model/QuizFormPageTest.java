@@ -14,8 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class QuizFormPageTest {
 
     private WebDriver driver;
-    private static final String ALL_QUIZZES_URL = "http://localhost:3000/quiz/all";
-    private static final String MY_QUIZZES_URL = "http://localhost:3000/quiz/my";
     private static final String PRIMARY_TEST_USERNAME = "tester";
     private static final String PRIMARY_TEST_EMAIL = "test@domain.com";
     private static final String PRIMARY_TEST_PASSWORD = "test";
