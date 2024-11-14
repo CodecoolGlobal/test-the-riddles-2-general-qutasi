@@ -18,9 +18,9 @@ public class NavbarPage {
     private final By logoutBtnBy = By.xpath("//button[contains(text(),'Logout')]");
     private final By mainPageBtnBy = By.xpath("//a[contains(text(),'Reptile Riddles')]");
     private final By gamesBtnBy = By.xpath("//button[contains(text(),'Games')]");
-    private final By quizzesBtnBy = By.xpath("//button[contains(text(),'Quizzes')]");
-    private final By myQuizzesBtnBy = By.xpath("//button[contains(text(),'My Quizzes')]");
-    private final By accountBtnBy = By.xpath("//button[contains(text(),'Account')]");
+    private final By quizzesBtnBy = By.xpath("//*[contains(text(),'Quizzes')]");
+    private final By myQuizzesBtnBy = By.xpath("//a[contains(text(),'My Quizzes')]");
+    private final By accountBtnBy = By.xpath("//a[contains(text(),'Account')]");
 
     public NavbarPage(WebDriver driver) {
         this.driver = driver;
@@ -66,5 +66,11 @@ public class NavbarPage {
 
     public void waitForPage(String url) {
         wait.until(ExpectedConditions.urlToBe(url));
+    }
+
+    public void goToQuizzes() {
+        if (isElementVisible(quizzesBtnBy)) {
+            driver.findElement(quizzesBtnBy).click();
+        }
     }
 }
