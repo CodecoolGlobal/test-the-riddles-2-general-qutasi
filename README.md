@@ -42,13 +42,19 @@ Reptile Riddles is a dynamic, full-stack web application designed to ignite the 
 
 ### Frontend:
 
-![React] ![Tailwind] ![JavaScript]  
+[![React]](https://react.dev/)
+[![Tailwind]](https://tailwindcss.com/)
+[![JavaScript]](https://www.javascript.com/)
 
 ### Backend: <br/>
-![Java] ![SpringBoot] ![psql]  
+[![Java]](https://www.java.com/en/)
+[![SpringBoot]](https://spring.io/projects/spring-boot)
+[![psql]](https://www.postgresql.org/)
 
 ###  Test Automation:
-![Java] ![Selenium] ![JUnit5]
+[![Java]](https://www.java.com/en/)
+[![Selenium]](https://www.selenium.dev/)
+[![JUnit5]](https://junit.org/junit5/)
 
 ## Usage
 
