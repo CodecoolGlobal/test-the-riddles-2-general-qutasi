@@ -119,7 +119,7 @@ Before you begin, ensure you have met the following requirements:
 ### Here are the primary user stories that outline the goals of the application.
 These user stories not only define the core functionalities of the application but also guide the scope of our test coverage. Each story corresponds to a specific set of test scenarios, ensuring that the application is thoroughly tested to meet user needs and maintain quality standards.
 #### New User Features
-- [ ] **1. As a new user**, I want to choose my own username and password during registration so that I can personalize my login credentials. 
+- [ ] **1. As a new user**, I want to choose my own username and password during registration so that I can personalize my login credentials.
 - [ ] **2. As a user**, I want an option to stay logged in, so that I don’t have to enter my credentials every time.
 
 #### Quiz Master Features
